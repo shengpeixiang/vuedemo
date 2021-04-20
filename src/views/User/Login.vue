@@ -12,20 +12,19 @@
                 <el-button type="" @click="goRegister">注册</el-button>
             </el-form-item>
         </el-form>
-        <el-button @click="setS('L')">setLs</el-button>
-        <el-button @click="getS('L')">getLs</el-button>
-        <el-button @click="setS('S')">setSs</el-button>
-        <el-button @click="getS('S')">getSs</el-button>
-        <el-button @click="clears('L')">clearL</el-button>
-        <el-button @click="clears('S')">clearS</el-button>
     </div>
 </template>
 
 <script>
-import {check} from './../../utils/login'
-import {setLstorage,setSstorage,getLstorage,getSstorage,clearStorage} from '../../utils/pStorge'
+import {check,getcookie} from './../../utils/login'
 export default {
+    
     data(){
+        let obj = {},cookies = getcookie();
+        for(let key in cookies){
+            obj['username'] = key;
+            obj['userpassword'] = cookies[key];
+        }
         var validateName = (rule, value, callback) => {
             if (value === '') {
                 callback(new Error('请输入用户名'));
@@ -42,8 +41,8 @@ export default {
         };
         return {
             ruleForm:{
-                username:"",
-                userpassword:""
+                username:obj.username?obj.username:"",
+                userpassword:obj.userpassword?obj.userpassword:""
             },
             rules: {
                 username: [
@@ -63,7 +62,7 @@ export default {
                 if (valid) {
                     check(_[formName].username,_[formName].userpassword,function(res){
                         if(res=="200"){
-                            _.$router.push({path:"/home"})
+                            _.$router.push({path:"/home/graph/yungraph"})
                         }else if(res=='201'){
                             _.$message({
                                 message: '密码错误',
@@ -83,15 +82,6 @@ export default {
         },
         goRegister(){
             this.$router.push({path:"/user/register"})
-        },
-        setS(type){
-            type === 'L'?setLstorage('ladmin','admin123456'):setSstorage("sadmin","admin123456");
-        },
-        getS(type){
-            type === 'L'?console.log(getLstorage('ladmin')):console.log(getSstorage("sadmin"));
-        },
-        clears(type){
-            clearStorage(type,type==='L'?'ladmin':'sadmin')
         }
     }
 }
