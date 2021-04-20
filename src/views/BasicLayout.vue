@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import {islogin} from './../utils/login'
 import LeftNav from "./../components/LeftNav"
 export default {
     data(){
@@ -18,11 +17,6 @@ export default {
     },
     components:{
         LeftNav
-    },
-    beforeCreate(){
-        if(!islogin()){
-            this.$router.push("/user/login")
-        }
     }
 }
 </script>

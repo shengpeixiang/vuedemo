@@ -5,9 +5,9 @@ const userlist = [
 export function setcookie(name,value,daysToLive){
     let cookie;
     if(typeof daysToLive === 'number'){
-        cookie = `${name}=${encodeURIComponent(value)};max-age=${daysToLive*60*60*24}`
+        cookie = `${name}=${encodeURIComponent(value)};max-age=${daysToLive*60*60*24};path=/`
     }else{
-        cookie = `${name}=${encodeURIComponent(value)}`
+        cookie = `${name}=${encodeURIComponent(value)};path=/`
     }
     document.cookie = cookie;
 }
@@ -24,7 +24,7 @@ export function getcookie(){
             let name = cookstr.substring(0,p);
             let value = cookstr.substring(p+1);
             value = decodeURIComponent(value);
-            cookie[name]=value
+            cookie[name]=value.trim()
         }
     }
     return cookie;

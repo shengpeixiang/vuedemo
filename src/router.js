@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import UserLayout from "./views/UserLayout.vue";
 import NProgress from "nprogress"
-import {islogin} from './utils/login'
+import {islogin} from "./utils/login"
 
 Vue.use(Router);
 const routes = [
@@ -58,10 +58,18 @@ const router = new Router({
 });
 router.beforeEach((to,from,next)=>{
   NProgress.start()
-  next()
+  if(to.name !== 'UserLogin'){
+    if(!islogin()){
+      next({path:"/user/login"})
+    }else{
+      next()
+    }
+  }else{
+    next()
+  }
 })
-router.afterEach((to,from)=>{
-    NProgress.done();
+router.afterEach(()=>{
+  NProgress.done();
 })
 
 export default router;
