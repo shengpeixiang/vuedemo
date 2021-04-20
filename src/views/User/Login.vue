@@ -12,11 +12,18 @@
                 <el-button type="" @click="goRegister">注册</el-button>
             </el-form-item>
         </el-form>
+        <el-button @click="setS('L')">setLs</el-button>
+        <el-button @click="getS('L')">getLs</el-button>
+        <el-button @click="setS('S')">setSs</el-button>
+        <el-button @click="getS('S')">getSs</el-button>
+        <el-button @click="clears('L')">clearL</el-button>
+        <el-button @click="clears('S')">clearS</el-button>
     </div>
 </template>
 
 <script>
 import {check} from './../../utils/login'
+import {setLstorage,setSstorage,getLstorage,getSstorage,clearStorage} from '../../utils/pStorge'
 export default {
     data(){
         var validateName = (rule, value, callback) => {
@@ -76,6 +83,15 @@ export default {
         },
         goRegister(){
             this.$router.push({path:"/user/register"})
+        },
+        setS(type){
+            type === 'L'?setLstorage('ladmin','admin123456'):setSstorage("sadmin","admin123456");
+        },
+        getS(type){
+            type === 'L'?console.log(getLstorage('ladmin')):console.log(getSstorage("sadmin"));
+        },
+        clears(type){
+            clearStorage(type,type==='L'?'ladmin':'sadmin')
         }
     }
 }
