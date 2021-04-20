@@ -22,5 +22,7 @@ export default {
 </script>
 
 <style>
-
+    .out-nav{position: fixed;left: 0;top: 0;bottom: 0;width: 118px;padding-top: 21px;
+        padding-left: 11px;overflow: hidden;}
+    .inner-con{margin-left: 118px;padding-right: 20px;padding-bottom: 20px;}
 </style>
