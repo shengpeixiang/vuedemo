@@ -1,6 +1,9 @@
 <template>
     <div class="head-nav-box">
-        HeadNav
+        <div class="head-nav-item" v-for="hn in nlist" :key="hn.path">
+            <i :class="hn.query.icon"></i>
+            {{hn.query.title}}
+        </div>
     </div>
 </template>
 
