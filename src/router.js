@@ -51,14 +51,26 @@ const routes = [
           {
             path:"/home/graph/yungraph",
             name:"yungraph",
-            query:{title:"数据总览"},
+            query:{title:"数据总览",icon:"el-icon-upload"},
             component:()=>import(/*webpackChunkName:"Graph" */ "./views/graph/YunGraph")
           },
           {
-            path:"home/graph/datalist",
+            path:"/home/graph/datalist",
             name:"datalist",
-            query:{title:"综合分析"},
+            query:{title:"综合分析",icon:"el-icon-s-management"},
             component:()=>import(/*webpackChunkName:"Graph" */ "./views/graph/DataList")
+          },
+          {
+            path:"/home/graph/fmreport",
+            name:"fmreport",
+            query:{title:"报表统计",icon:"el-icon-more-outline"},
+            component:()=>import(/*webpackChunkName:"Graph" */ "./views/graph/FmReport")
+          },
+          {
+            path:"/home/graph/overview",
+            name:"overview",
+            query:{title:"数据概览",icon:"el-icon-s-operation"},
+            component:()=>import(/*webpackChunkName:"Graph" */ "./views/graph/OverView")
           }
         ]
       },{
@@ -74,8 +86,49 @@ const routes = [
           {
             path:"/home/crisis/suicide",
             name:"suicide",
-            query:{title:"自杀风险"},
+            query:{title:"自杀风险",icon:"el-icon-warning"},
             component:()=>import(/**webpackChunkName:"Crisis" */ "./views/crisis/Suicide")
+          }
+        ]
+      },{
+        path:"/home/evacenter",
+        name:"evacenter",
+        query:{title:"测评中心",icon:"el-icon-s-release"},
+        component:InnerLayout,
+        children:[
+          {
+            path:"/home/evacenter",
+            redirect:"/home/evacenter/record"
+          },
+          {
+            path:"/home/evacenter/record",
+            name:"record",
+            query:{title:"评测结果",icon:"el-icon-s-grid"},
+            component:()=>import(/**webpackChunkName:"Evacenter" */ "./views/evacenter/Record")
+          },
+          {
+            path:"/home/evacenter/entry",
+            name:"entry",
+            query:{title:"数据录入",icon:"el-icon-folder-add"},
+            component:()=>import(/**webpackChunkName:"Evacenter" */ "./views/evacenter/Entry")
+          },
+          {
+            path:"/home/evacenter/compose",
+            name:"compose",
+            query:{title:"量表分发",icon:"el-icon-share"},
+            component:()=>import(/**webpackChunkName:"Evacenter" */ "./views/evacenter/Compose")
+          },
+          {
+            path:"/home/evacenter/system",
+            name:"system",
+            query:{title:"系统量表",icon:"el-icon-s-home"},
+            component:()=>import(/**webpackChunkName:"Evacenter" */ "./views/evacenter/System")
+          },
+          {
+            path:"/home/evacenter/custom",
+            name:"custom",
+            query:{title:"自有量表",icon:"el-icon-s-custom"},
+            component:()=>import(/**webpackChunkName:"Evacenter" */ "./views/evacenter/Custom")
           }
         ]
       }

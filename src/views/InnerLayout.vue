@@ -1,7 +1,9 @@
 <template>
     <div class="inner-box">
-        <HeadNav />
-        <router-view></router-view>
+        <HeadNav class="inner-head-nav" />
+        <div class="change-con" :style="{height:conheight}">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
@@ -11,12 +13,17 @@ export default {
     data(){
         return {}
     },
+    computed:{
+        conheight(){
+            return (document.documentElement.clientHeight-87)+'px';
+        }
+    },
     components:{
         HeadNav
     }
 }
 </script>
 
-<style>
-
+<style scoped>
+    .change-con{background-color: #ffffff;overflow: auto;border-radius:0 8px 8px 0;}
 </style>

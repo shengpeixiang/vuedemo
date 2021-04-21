@@ -4,6 +4,8 @@ import router from "./router";
 import store from "./store";
 import {Button,Input,Form,FormItem,Message} from "element-ui"
 
+import {q84,q83,q82} from './utils/testes6'
+
 Vue.config.productionTip = false;
 Vue.use(Button);
 Vue.use(Input);
@@ -11,6 +13,10 @@ Vue.use(Form);
 Vue.use(FormItem);
 Vue.prototype.$message=Message;
 Vue.component(Message.name,Message);
+
+// console.log(q84(15));
+// q83();
+q82();
 
 new Vue({
   router,
