@@ -131,6 +131,65 @@ const routes = [
             component:()=>import(/**webpackChunkName:"Evacenter" */ "./views/evacenter/Custom")
           }
         ]
+      },{
+        path:"/home/zxcenter",
+        name:"zxcenter",
+        query:{title:"咨询中心",icon:"el-icon-question"},
+        component:InnerLayout,
+        children:[
+          {
+            path:"/home/zxcenter",
+            redirect:"/home/zxcenter/comment"
+          },
+          {
+            path:"/home/zxcenter/comment",
+            name:"comment",
+            query:{title:"来访者评价",icon:"el-icon-s-promotion"},
+            component:()=>import(/**webpackChunkName:"Zxcenter" */ "./views/zxcenter/Comment")
+          },
+          {
+            path:"/home/zxcenter/appoint",
+            name:"appoint",
+            query:{title:"预约详情",icon:"el-icon-s-platform"},
+            component:()=>import(/**webpackChunkName:"Zxcenter" */ "./views/zxcenter/Appoint")
+          },
+          {
+            path:"/home/zxcenter/doctor",
+            name:"doctor",
+            query:{title:"咨询师管理",icon:"el-icon-ice-cream-round"},
+            component:()=>import(/**webpackChunkName:"Zxcenter" */ "./views/zxcenter/Doctor")
+          },
+          {
+            path:"/home/zxcenter/classes",
+            name:"classes",
+            query:{title:"排班管理",icon:"el-icon-ice-cream-square"},
+            component:()=>import(/**webpackChunkName:"Zxcenter" */ "./views/zxcenter/Classes")
+          },
+          {
+            path:"/home/zxcenter/detail",
+            name:"detail",
+            query:{title:"排班详情",icon:"el-icon-lollipop"},
+            component:()=>import(/**webpackChunkName:"Zxcenter" */ "./views/zxcenter/Detail")
+          },
+          {
+            path:"/home/zxcenter/hotline",
+            name:"hotline",
+            query:{title:"心理热线",icon:"el-icon-potato-strips"},
+            component:()=>import(/**webpackChunkName:"Zxcenter" */ "./views/zxcenter/Hotline")
+          },
+          {
+            path:"/home/zxcenter/yyroom",
+            name:"yyroom",
+            query:{title:"咨询室预约",icon:"el-icon-milk-tea"},
+            component:()=>import(/**webpackChunkName:"Zxcenter" */ "./views/zxcenter/Yyroom")
+          },
+          {
+            path:"/home/zxcenter/zzroom",
+            name:"zzroom",
+            query:{title:"转诊管理",icon:"el-icon-ice-drink"},
+            component:()=>import(/**webpackChunkName:"Zxcenter" */ "./views/zxcenter/Zzroom")
+          }
+        ]
       }
     ]
   }
