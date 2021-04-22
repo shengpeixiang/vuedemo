@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "vd":"vue-cli-service serve",
+    "vd": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
@@ -11,6 +11,7 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "element-ui": "^2.15.1",
+    "lodash.debounce": "^4.0.8",
     "nprogress": "^0.2.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",

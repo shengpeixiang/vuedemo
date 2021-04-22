@@ -16,7 +16,7 @@ Vue.component(Message.name,Message);
 
 // console.log(q84(15));
 // q83();
-q82();
+// q82();
 
 new Vue({
   router,

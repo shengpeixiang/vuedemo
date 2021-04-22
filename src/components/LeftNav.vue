@@ -1,13 +1,13 @@
 <template>
     <div class="left-nav">
-        <div class="logo-con" @click="gohome">
+        <div :class="['logo-con','logo-con-'+sizemark]" @click="gohome">
             <div class="logo-icon"></div>
-            <span class="logo-name">心理服务平台</span>
+            <span :class="['logo-name','logo-name-'+sizemark]">心理服务平台</span>
         </div>
-        <div class="left-nav-box" :style="{height:navHeight}">
+        <div :class="['left-nav-box','left-nav-box-'+sizemark]" :style="{height:navHeight}">
             <div :class="['left-nav-item',(isactive==nav.path?'nav-isactive':'')]" v-for="nav in list" :key="nav.name" @click="curnav(nav)">
                 <i :class="nav.query.icon"></i>
-                <div class="nav-title">{{nav.query.title}}</div>
+                <div :class="['nav-title','nav-title-'+sizemark]">{{nav.query.title}}</div>
             </div>
         </div>
         
@@ -32,7 +32,10 @@ export default {
             return this.$route.matched[1].path;
         },
         navHeight(){
-            return (document.documentElement.clientHeight-99)+'px';
+            return (document.documentElement.clientHeight-105)+'px';
+        },
+        sizemark(){
+            return this.$store.state.sizemark
         }
     },
     methods:{
@@ -73,15 +76,19 @@ export default {
 </script>
 
 <style>
-    .logo-con{cursor: pointer;}
-    .left-nav-item{width: 64px;height:54px;text-align:center;border-radius: 8px;color: #7EA4CD;
+    .logo-con{cursor: pointer;margin-bottom:14px;}
+    .left-nav-item{width: 64px;height:54px;text-align:center;border-radius: 8px;color: #7EA4CD;position: relative;
         cursor: pointer;font-size: 12px;padding-top:10px;box-shadow:0 0 4px #aaa;margin:0 0 18px 9px;}
     .left-nav-item i{font-size:24px;}
     .nav-title{margin-top: 4px;}
     .nav-isactive{background-color:#195190;color: #fff;}
-    .logo-con{margin-bottom:20px;}
     .logo-icon{width: 32px;height: 33px;margin:0 auto;border-radius: 50%;position: relative;left: -11px;
         overflow: hidden;background-image: url('../assets/logo-split.png');background-position:0 -179px;}
     .logo-name{font-size: 14px;display: block;color: #fff;line-height: 20px;margin-top: 5px;text-align: center;}
-    .left-nav-box{overflow: auto;}
+    .left-nav-box{overflow: auto;padding-top: 6px;}
+
+    .logo-name-small{visibility: hidden;}
+    .left-nav-box-small .left-nav-item{width:32px;height:28px;padding-top: 4px;}
+    .logo-con-small{margin-bottom:0;}
+    .nav-title-small{position: absolute;background-color: #ffffff;left: 34px;top: 0;}
 </style>
