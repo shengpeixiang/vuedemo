@@ -142,7 +142,7 @@ const router = new Router({
 });
 router.beforeEach((to,from,next)=>{
   NProgress.start()
-  if(to.name !== 'UserLogin'){
+  if(to.name !== 'UserLogin' && to.name!=="UserRegister"){
     if(!islogin()){
       next({path:"/user/login"})
     }else{

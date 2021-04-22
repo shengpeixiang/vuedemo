@@ -29,6 +29,9 @@ export function getcookie(){
     }
     return cookie;
 }
+export function clearCookie(){
+    setcookie('admin','',0);
+}
 export function check(name,pw,callback){
     let checkuser = userlist.find(item=>item.name==name)
     if(checkuser){

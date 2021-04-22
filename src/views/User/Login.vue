@@ -41,8 +41,8 @@ export default {
         };
         return {
             ruleForm:{
-                username:obj.username?obj.username:"",
-                userpassword:obj.userpassword?obj.userpassword:""
+                username:obj.username?obj.username:"admin",
+                userpassword:obj.userpassword?obj.userpassword:"admin123456"
             },
             rules: {
                 username: [

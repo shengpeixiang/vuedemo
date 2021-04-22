@@ -1,6 +1,7 @@
 <template>
     <div>
         <div class="page-top-bg"></div>
+        <LoginOut />
         <div :class="['out-nav','left-con-'+sizemark]">
             <LeftNav />
         </div>
@@ -11,6 +12,7 @@
 </template>
 
 <script>
+import LoginOut from './../components/LoginOut'
 import LeftNav from "./../components/LeftNav"
 import { WR } from "./../utils/WindowResize"
 export default {
@@ -18,7 +20,8 @@ export default {
         return {}
     },
     components:{
-        LeftNav
+        LeftNav,
+        LoginOut
     },
     computed:{
         sizemark(){

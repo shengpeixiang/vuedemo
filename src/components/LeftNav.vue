@@ -7,7 +7,7 @@
         <div :class="['left-nav-box','left-nav-box-'+sizemark]" :style="{height:navHeight}">
             <div :class="['left-nav-item',(isactive==nav.path?'nav-isactive':'')]" v-for="nav in list" :key="nav.name" @click="curnav(nav)">
                 <i :class="nav.query.icon"></i>
-                <div :class="['nav-title','nav-title-'+sizemark]">{{nav.query.title}}</div>
+                <div :title="nav.query.title" :class="['nav-title','nav-title-'+sizemark]">{{nav.query.title}}</div>
             </div>
         </div>
         
@@ -90,5 +90,5 @@ export default {
     .logo-name-small{visibility: hidden;}
     .left-nav-box-small .left-nav-item{width:32px;height:28px;padding-top: 4px;}
     .logo-con-small{margin-bottom:0;}
-    .nav-title-small{position: absolute;background-color: #ffffff;left: 34px;top: 0;}
+    .nav-title-small{display: none;}
 </style>
