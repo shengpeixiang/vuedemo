@@ -5,9 +5,9 @@
             <span :class="['logo-name','logo-name-'+sizemark]">心理服务平台</span>
         </div>
         <div :class="['left-nav-box','left-nav-box-'+sizemark]" :style="{height:navHeight}">
-            <div :class="['left-nav-item',(isactive==nav.path?'nav-isactive':'')]" v-for="nav in list" :key="nav.name" @click="curnav(nav)">
+            <div :class="['left-nav-item',(isactive==nav.path?'nav-isactive':'')]" v-for="nav in list" :key="nav.name" :title="nav.query.title" @click="curnav(nav)">
                 <i :class="nav.query.icon"></i>
-                <div :title="nav.query.title" :class="['nav-title','nav-title-'+sizemark]">{{nav.query.title}}</div>
+                <div :class="['nav-title','nav-title-'+sizemark]">{{nav.query.title}}</div>
             </div>
         </div>
         

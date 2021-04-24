@@ -1,16 +1,21 @@
 <template>
   <div id="app">
+    <!-- <Parent /> -->
       <router-view></router-view>
   </div>
 </template>
 
 <script>
+import Parent from './components/test/Parent'
 export default {
   data(){
     return{}
   },
   methods:{
     
+  },
+  components:{
+    Parent
   },
   mounted(){
       
