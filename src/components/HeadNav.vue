@@ -1,8 +1,13 @@
 <template>
-    <div class="head-nav-box">
+    <div :class="['head-nav-box','head-nav-box-'+$store.state.sizemark]">
         <div :class="['head-nav-item',(cpath===hn.path?'hactive':'')]" @click="changeCon(hn)" v-for="hn in nlist" :key="hn.path">
-            <i :class="hn.query.icon"></i>
-            {{hn.query.title}}
+            <el-tooltip :disabled="tipshow" effect="dark" :content="hn.query.title" placement="top">
+                <div>
+                    <i :class="hn.query.icon"></i>
+                    {{tipshow?hn.query.title:''}}
+                </div>
+            </el-tooltip>
+            
         </div>
     </div>
 </template>
@@ -14,10 +19,14 @@ export default {
     },
     computed:{
         nlist(){
-            return this.$store.state.hnav
+            let hnav = this.$store.state.hnav;
+            return hnav;
         },
         cpath(){
             return this.$route.path
+        },
+        tipshow(){
+            return this.$store.state.sizemark==='big'
         }
     },
     watch:{
@@ -37,11 +46,15 @@ export default {
                 this.$router.push({path:item.path})
             }
         }
+    },
+    mounted(){
+        
     }
 }
 </script>
 
-<style less>
+<style>
+    .more-icon{width:54px;float: left;}
     .head-nav-box{overflow:hidden;padding-top:22px;}
     .head-nav-item{float: left;width:112px;height: 45px;cursor: pointer;text-align: center;
     font-size: 12px;line-height: 45px;color: #fff;background-color: #195190;margin-left: 4px;
@@ -49,4 +62,7 @@ export default {
     .head-nav-item i{font-size: 14px;}
     .head-nav-item:first-child{margin-left: 0;}
     .hactive{border-color: #fff;background-color: #fff;color: #333;font-weight:bold;}
+    .head-nav-box-small{padding-top:37px;}
+    .head-nav-box-small .head-nav-item{width:36px;height: 30px;line-height: 30px;}
+
 </style>
