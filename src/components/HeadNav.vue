@@ -55,14 +55,14 @@ export default {
 
 <style>
     .more-icon{width:54px;float: left;}
-    .head-nav-box{overflow:hidden;padding-top:22px;}
+    .head-nav-box{overflow:hidden;padding-top:22px;height: 44px;}
     .head-nav-item{float: left;width:112px;height: 45px;cursor: pointer;text-align: center;
     font-size: 12px;line-height: 45px;color: #fff;background-color: #195190;margin-left: 4px;
-    border-radius:5px 5px 0 0;border: 1px solid  #12355e;box-sizing: border-box;}
+    border-radius:5px 5px 0 0;border: 1px solid  #97c0f0;box-sizing: border-box;}
     .head-nav-item i{font-size: 14px;}
     .head-nav-item:first-child{margin-left: 0;}
     .hactive{border-color: #fff;background-color: #fff;color: #333;font-weight:bold;}
-    .head-nav-box-small{padding-top:37px;}
+    .head-nav-box-small{padding-top:37px;height: 29px;}
     .head-nav-box-small .head-nav-item{width:36px;height: 30px;line-height: 30px;}
 
 </style>

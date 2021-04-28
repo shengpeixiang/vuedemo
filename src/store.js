@@ -10,7 +10,7 @@ export default new Vuex.Store({
   },
   mutations: {
       setWinSize(state){
-        if(document.documentElement.clientWidth<900){
+        if(document.documentElement.clientWidth<(state.hnav.length * 116 +138)){
           state.sizemark = "small"
         }else{
           state.sizemark = "big"
