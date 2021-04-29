@@ -1,6 +1,7 @@
 <template>
-    
-    <div class="graph-con"></div>
+    <div class="graph-con">
+        
+    </div>
 </template>
 
 <script>
