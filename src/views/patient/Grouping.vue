@@ -1,5 +1,5 @@
 <template>
-    <div>1</div>
+    <div>Grouping</div>
 </template>
 
 <script>

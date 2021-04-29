@@ -382,6 +382,29 @@ const routes = [
             component:()=>import(/**webpackChunkName:"sleepmanagement" */ "./views/sleepmanagement/Scale")
           }
         ]
+      },{
+        path:"/home/patient",
+        name:"patient",
+        query:{title:"患者管理",icon:"el-icon-s-flag"},
+        component:InnerLayout,
+        children:[
+          {
+            path:"/home/patient",
+            redirect:"/home/patient/patientlist"
+          },
+          {
+            path:"/home/patient/patientlist",
+            name:"patientlist",
+            query:{title:"患者列表",icon:"el-icon-s-comment"},
+            component:()=>import(/**webpackChunkName:"Patient" */ "./views/patient/PatientList")
+          },
+          {
+            path:"/home/patient/grouping",
+            name:"grouping",
+            query:{title:"分组管理",icon:"el-icon-s-finance"},
+            component:()=>import(/**webpackChunkName:"Patient" */ "./views/patient/Grouping")
+          }
+        ]
       }
     ]
   }

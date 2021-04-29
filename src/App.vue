@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import Parent from './components/test/Parent'
 export default {
   data(){
     return{}
@@ -15,7 +14,6 @@ export default {
     
   },
   components:{
-    Parent
   },
   mounted(){
       
