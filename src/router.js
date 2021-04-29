@@ -190,6 +190,198 @@ const routes = [
             component:()=>import(/**webpackChunkName:"Zxcenter" */ "./views/zxcenter/Zzroom")
           }
         ]
+      },{
+        path:"/home/team",
+        name:"team",
+        query:{title:"团体辅导",icon:"el-icon-goods"},
+        component:InnerLayout,
+        children:[
+          {
+            path:"/home/team",
+            redirect:"/home/team/signin"
+          },
+          {
+            path:"/home/team/signin",
+            name:"signin",
+            query:{title:"开课签到",icon:"el-icon-s-goods"},
+            component:()=>import(/**webpackChunkName:"Team" */ "./views/team/Signin")
+          },
+          {
+            path:"/home/team/cure",
+            name:"cure",
+            query:{title:"预约管理",icon:"el-icon-warning"},
+            component:()=>import(/**webpackChunkName:"Team" */ "./views/team/Cure")
+          },
+          {
+            path:"/home/team/course",
+            name:"course",
+            query:{title:"课程管理",icon:"el-icon-warning-outline"},
+            component:()=>import(/**webpackChunkName:"Team" */ "./views/team/Course")
+          }
+        ]
+      },{
+        path:"/home/train",
+        name:"train",
+        query:{title:"康复中心",icon:"el-icon-zoom-out"},
+        component:InnerLayout,
+        children:[
+          {
+            path:"/home/train",
+            redirect:"/home/train/sleepimprove"
+          },
+          {
+            path:"/home/train/sleepimprove",
+            name:"sleepimprove",
+            query:{title:"睡眠改善",icon:"el-icon-picture"},
+            component:()=>import(/**webpackChunkName:"Train" */ "./views/train/SleepImprove")
+          },
+          {
+            path:"/home/train/cureproject",
+            name:"cureproject",
+            query:{title:"治疗项目",icon:"el-icon-download"},
+            component:()=>import(/**webpackChunkName:"Train" */ "./views/train/CureProject")
+          },
+          {
+            path:"/home/train/recoverycure",
+            name:"recoverycure",
+            query:{title:"睡眠改善",icon:"el-icon-upload2"},
+            component:()=>import(/**webpackChunkName:"Train" */ "./views/train/RecoveryCure")
+          }
+        ]
+      },{
+        path:"/home/mentality",
+        name:"mentality",
+        query:{title:"心理治疗",icon:"el-icon-camera-solid"},
+        component:InnerLayout,
+        children:[
+          {
+            path:"/home/mentality",
+            redirect:"/home/mentality/file"
+          },
+          {
+            path:"/home/mentality/file",
+            name:"file",
+            query:{title:"心理档案",icon:"el-icon-camera"},
+            component:()=>import(/**webpackChunkName:"Mentality" */ "./views/mentality/File")
+          },
+          {
+            path:"/home/mentality/informationtolead",
+            name:"informationtolead",
+            query:{title:"信息导入",icon:"el-icon-video-camera-solid"},
+            component:()=>import(/**webpackChunkName:"Mentality" */ "./views/mentality/InformationToLead")
+          },
+          {
+            path:"/home/mentality/bindingcheck",
+            name:"bindingcheck",
+            query:{title:"绑定审核",icon:"el-icon-video-camera"},
+            component:()=>import(/**webpackChunkName:"Mentality" */ "./views/mentality/BindingCheck")
+          }
+        ]
+      },{
+        path:"/home/popularization",
+        name:"popularization",
+        query:{title:"心理科普",icon:"el-icon-message-solid"},
+        component:InnerLayout,
+        children:[
+          {
+            path:"/home/popularization",
+            redirect:"/home/popularization/article"
+          },
+          {
+            path:"/home/popularization/article",
+            name:"article",
+            query:{title:"文章科普",icon:"el-icon-bell"},
+            component:()=>import(/**webpackChunkName:"Popularization" */ "./views/popularization/Article")
+          },
+          {
+            path:"/home/popularization/video",
+            name:"video",
+            query:{title:"视频科普",icon:"el-icon-s-cooperation"},
+            component:()=>import(/**webpackChunkName:"Popularization" */ "./views/popularization/Video")
+          },
+          {
+            path:"/home/popularization/music",
+            name:"music",
+            query:{title:"放松音乐",icon:"el-icon-s-order"},
+            component:()=>import(/**webpackChunkName:"Popularization" */ "./views/popularization/Music")
+          },
+          {
+            path:"/home/popularization/dataclassify",
+            name:"dataclassify",
+            query:{title:"数据分类",icon:"el-icon-s-platform"},
+            component:()=>import(/**webpackChunkName:"Popularization" */ "./views/popularization/DataClassify")
+          }
+        ]
+      },{
+        path:"/home/system",
+        name:"system",
+        query:{title:"系统管理",icon:"el-icon-s-tools"},
+        component:InnerLayout,
+        children:[
+          {
+            path:"/home/system",
+            redirect:"/home/system/systemid"
+          },
+          {
+            path:"/home/system/systemid",
+            name:"systemid",
+            query:{title:"账号管理",icon:"el-icon-s-unfold"},
+            component:()=>import(/**webpackChunkName:"System" */ "./views/system/SystemId")
+          },
+          {
+            path:"/home/system/limits",
+            name:"limits",
+            query:{title:"权限管理",icon:"el-icon-s-operation"},
+            component:()=>import(/**webpackChunkName:"System" */ "./views/system/Limits")
+          },
+          {
+            path:"/home/system/organization",
+            name:"organization",
+            query:{title:"组织机构",icon:"el-icon-s-promotion"},
+            component:()=>import(/**webpackChunkName:"System" */ "./views/system/Organization")
+          },
+          {
+            path:"/home/system/category",
+            name:"category",
+            query:{title:"人员类别",icon:"el-icon-s-home"},
+            component:()=>import(/**webpackChunkName:"System" */ "./views/system/Category")
+          }
+        ]
+      },{
+        path:"/home/sleepmanagement",
+        name:"sleepmanagement",
+        query:{title:"睡眠管理",icon:"el-icon-s-ticket"},
+        component:InnerLayout,
+        children:[
+          {
+            path:"/home/sleepmanagement",
+            redirect:"/home/sleepmanagement/program"
+          },
+          {
+            path:"/home/sleepmanagement/program",
+            name:"program",
+            query:{title:"方案管理",icon:"el-icon-s-management"},
+            component:()=>import(/**webpackChunkName:"Sleepmanagement" */ "./views/sleepmanagement/Program")
+          },
+          {
+            path:"/home/sleepmanagement/plan",
+            name:"plan",
+            query:{title:"计划管理",icon:"el-icon-s-open"},
+            component:()=>import(/**webpackChunkName:"sleepmanagement" */ "./views/sleepmanagement/Plan")
+          },
+          {
+            path:"/home/sleepmanagement/task",
+            name:"task",
+            query:{title:"任务管理",icon:"el-icon-s-shop"},
+            component:()=>import(/**webpackChunkName:"sleepmanagement" */ "./views/sleepmanagement/Task")
+          },
+          {
+            path:"/home/sleepmanagement/scale",
+            name:"scale",
+            query:{title:"量表管理",icon:"el-icon-s-marketing"},
+            component:()=>import(/**webpackChunkName:"sleepmanagement" */ "./views/sleepmanagement/Scale")
+          }
+        ]
       }
     ]
   }
