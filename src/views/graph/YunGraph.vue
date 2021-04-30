@@ -1,12 +1,15 @@
 <template>
     <div class="graph-con">
-        
+        <GrapHead />
     </div>
 </template>
 
 <script>
+import GrapHead from "./../../components/graph/GrapHead"
 export default {
-
+    components:{
+        GrapHead
+    }
 }
 </script>
 
