@@ -23,7 +23,7 @@ export default {
 <style>
   ::-webkit-scrollbar{
     width:3px;
-    height:16px;
+    height:10px;
     background-color: #fff;
   }
   ::-webkit-scrollbar-track{

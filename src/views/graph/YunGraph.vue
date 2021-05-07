@@ -1,11 +1,13 @@
 <template>
     <div class="graph-con">
-        <GrapHead />
+        <grap-head></grap-head>
         <div class="content-box">
             <el-row :gutter="10">
                 <el-col :span="7">
                     <com-title :title="ltt"></com-title>
-                    <con-box :ch="lth"></con-box>
+                    <con-box :ch="lth">
+                        
+                    </con-box>
                     <com-title :title="lmt"></com-title>
                     <con-box :ch="lmh"></con-box>
                     <com-title :title="lbt"></com-title>
@@ -59,6 +61,6 @@ export default {
 </script>
 
 <style>
-    .graph-con{height: 100%;background-color: #00043d; background-image:url('../../assets/bigbg.png');overflow: auto;}
+    .graph-con{height: 100%;background-color: #00043d; background-image:url('../../assets/bigbg.png');overflow: auto;min-width:1024px;}
     .content-box{width:98%;margin: auto;}
 </style>

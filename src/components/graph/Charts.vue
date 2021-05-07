@@ -4,7 +4,7 @@
 
 <script>
 import * as echarts from "echarts/core"
-import {PieChart,MapChart} from "echart/charts"
+import {PieChart,MapChart} from "echarts/charts"
 import {TitleComponent,TooltipComponent,GridComponent} from "echarts/components"
 import {CanvasRenderer} from "echarts/renderers"
 
