@@ -15,7 +15,6 @@ Vue.use(Row);
 Vue.use(Col);
 Vue.prototype.$message=Message;
 Vue.component(Message.name,Message);
-
 new Vue({
   router,
   store,
