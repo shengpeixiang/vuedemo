@@ -7,6 +7,7 @@ import * as echarts from "echarts/core"
 import {PieChart,MapChart} from "echarts/charts"
 import {TitleComponent,TooltipComponent,GridComponent} from "echarts/components"
 import {CanvasRenderer} from "echarts/renderers"
+import debounce from "lodash.debounce"
 
 echarts.use([PieChart,MapChart,TitleComponent,TooltipComponent,GridComponent,CanvasRenderer])
 
@@ -17,18 +18,42 @@ export default {
             default:{}
         },
         chartoptions:{
-            type:Object,
-            default:{}
+            type:Array,
+            default:[]
+        }
+    },
+    data(){
+        return {
+            myChart:null
         }
     },
     methods:{
-        renderCharts(o){
-            var myChart = echarts.init(document.getElementById("ChartCon"));
-            myChart.setOption(o)
+        renderCharts(data){
+            let option = {
+                title: {
+                    show:false
+                },
+                tooltip: {
+                    trigger: 'item'
+                },
+                series: [
+                    {
+                        type: 'pie',
+                        radius: '80%',
+                        data:data
+                    }
+                ]
+            };
+            this.myChart = echarts.init(document.getElementById("ChartCon"));
+            this.myChart.setOption(option)
         }
     },
     mounted(){
-        this.renderCharts(chartoptions);
+        let _ = this;
+        _.renderCharts(_.chartoptions);
+        window.onresize = debounce(()=>{
+            this.myChart.resize();
+        },100)
     }
 }
 </script>

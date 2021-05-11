@@ -9,6 +9,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^2.6.5",
     "echarts": "^5.1.1",
     "element-ui": "^2.15.1",
@@ -38,6 +39,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "mockjs": "^1.1.0",
     "prettier": "^1.18.2",
     "vue-template-compiler": "^2.6.10"
   }

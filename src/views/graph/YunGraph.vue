@@ -6,7 +6,7 @@
                 <el-col :span="7">
                     <com-title :title="ltt"></com-title>
                     <con-box :ch="lth">
-                        
+                        <Charts v-for="item in basicdata" :chartstyle="tps" :chartoptions="item.data" :key="item.title" />
                     </con-box>
                     <com-title :title="lmt"></com-title>
                     <con-box :ch="lmh"></con-box>
@@ -33,6 +33,8 @@
 import GrapHead from "./../../components/graph/GrapHead"
 import ConBox from "./../../components/graph/ConBox"
 import ComTitle from "./../../components/graph/ComTitle"
+import Charts from "./../../components/graph/Charts"
+import api from "./../../axios/api"
 export default {
     data(){
         return {
@@ -49,18 +51,36 @@ export default {
             rtt:"服务概况",
             rmt:"最近咨询",
             rbt:"心理预警处理率",
-            mt:"评测情况"
+            mt:"评测情况",
+            tps:{},
+            basicdata:[
+                {title:"性别分布",data:[]},
+                {title:"年龄群体分布",data:[]},
+                {title:"职业群体分布",data:[]},
+            ]
         }
     },
     components:{
         GrapHead,
         ConBox,
-        ComTitle
+        ComTitle,
+        Charts
+    },
+    methods:{
+        getdata(){
+            api.rq("/grraph/basicdata","").then(res=>{
+                console.log(res);
+            })
+        }
+    },
+    mounted(){
+        let _ = this;
+        _.getdata();
     }
 }
 </script>
 
 <style>
-    .graph-con{height: 100%;background-color: #00043d; background-image:url('../../assets/bigbg.png');overflow: auto;min-width:1024px;}
+    .graph-con{height: 100%;background-color: #00043d; background-image:url('~@/assets/bigbg.png');overflow: auto;min-width:1024px;}
     .content-box{width:98%;margin: auto;}
 </style>

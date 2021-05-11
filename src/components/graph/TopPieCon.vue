@@ -21,13 +21,13 @@ export default {
             default:{}
         },
         co:{
-            type:Object,
-            default:{}
+            type:Array,
+            default:[]
         }
     }
 }
 </script>
 
 <style scoped>
-    .pie-out-item{}
+    .pie-out-item{background:linear-gradient(rgba(46, 69, 241,.22),rgba(0,4,61,.22));height: 100%;width: 30%;float: left;margin:0 1.5%;}
 </style>

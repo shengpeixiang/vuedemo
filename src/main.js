@@ -15,6 +15,7 @@ Vue.use(Row);
 Vue.use(Col);
 Vue.prototype.$message=Message;
 Vue.component(Message.name,Message);
+require("./mock.js");
 new Vue({
   router,
   store,
