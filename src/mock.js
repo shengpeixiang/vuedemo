@@ -2,19 +2,15 @@ const Mock = require("mockjs");
 
 const Random = Mock.Random;
 
-const produceNewsData = function(){
-    let articles = [];
-    for(let i=0;i<10;i++){
-        let newArticleObject = {
-            title:Random.csentence(5,10),
-            author_name:Random.cname(),
-            date:Random.date()+"-"+Random.time
-        }
-        articles.push(newArticleObject);
-    }
+const basicData = function(){
+    let data = {
+        "sex":{"a":81,"b":72},
+        "age":{"a":81,"b":72,"c":99,"d":137,"e":52,"f":91},
+        "cate":{"a":23,"b":72,"c":34,"d":137,"e":34,"f":456}
+    };
     return {
-        articles:articles
+        data:data
     }
 }
 
-Mock.mock("/grraph/basicdata","post",produceNewsData);
+Mock.mock("/grraph/basicdata","post",basicData);

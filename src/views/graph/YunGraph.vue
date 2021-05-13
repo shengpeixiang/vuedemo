@@ -6,7 +6,7 @@
                 <el-col :span="7">
                     <com-title :title="ltt"></com-title>
                     <con-box :ch="lth">
-                        <Charts v-for="item in basicdata" :chartstyle="tps" :chartoptions="item.data" :key="item.title" />
+                        
                     </con-box>
                     <com-title :title="lmt"></com-title>
                     <con-box :ch="lmh"></con-box>
@@ -33,8 +33,9 @@
 import GrapHead from "./../../components/graph/GrapHead"
 import ConBox from "./../../components/graph/ConBox"
 import ComTitle from "./../../components/graph/ComTitle"
-import Charts from "./../../components/graph/Charts"
 import api from "./../../axios/api"
+
+
 export default {
     data(){
         return {
@@ -52,7 +53,7 @@ export default {
             rmt:"最近咨询",
             rbt:"心理预警处理率",
             mt:"评测情况",
-            tps:{},
+            tps:{width:'30%',height:'15vh'},
             basicdata:[
                 {title:"性别分布",data:[]},
                 {title:"年龄群体分布",data:[]},
@@ -63,19 +64,39 @@ export default {
     components:{
         GrapHead,
         ConBox,
-        ComTitle,
-        Charts
+        ComTitle
+    },
+    created(){
+        this.getdata();
     },
     methods:{
         getdata(){
+            let _ = this;
             api.rq("/grraph/basicdata","").then(res=>{
-                console.log(res);
+                _.fmtdata(res.data);
             })
+        },
+        fmtdata(data){
+            let [sexdata,agedata,catedata] = [[],[],[]];
+            for(let key in data.sex){
+                let sexobj = {name:key,value:data.sex[key]};
+                sexdata.push(sexobj);
+            }
+            this.basicdata[0].data = sexdata;
+            for(let key in data.age){
+                let sexobj = {name:key,value:data.sex[key]};
+                agedata.push(sexobj);
+            }
+            this.basicdata[1].data = agedata;
+            for(let key in data.cate){
+                let sexobj = {name:key,value:data.sex[key]};
+                catedata.push(sexobj);
+            }
+            this.basicdata[2].data = catedata;
         }
     },
     mounted(){
-        let _ = this;
-        _.getdata();
+        
     }
 }
 </script>
