@@ -33,9 +33,13 @@
 import GrapHead from "./../../components/graph/GrapHead"
 import ConBox from "./../../components/graph/ConBox"
 import ComTitle from "./../../components/graph/ComTitle"
-import api from "./../../axios/api"
+import axios from "axios"
 
-
+// import * as echarts from "echarts/core"
+// import { BarChart } from "echarts/charts"
+// import { TitleComponent,TooltipComponent,GridComponent } from "echarts/components"
+// import { CanvasRender } from "echarts/renderers"
+// echarts.use([BarChart,TitleComponent,TooltipComponent,GridComponent,CanvasRender]);
 export default {
     data(){
         return {
@@ -58,7 +62,8 @@ export default {
                 {title:"性别分布",data:[]},
                 {title:"年龄群体分布",data:[]},
                 {title:"职业群体分布",data:[]},
-            ]
+            ],
+            getasyncdata:{}
         }
     },
     components:{
@@ -67,14 +72,13 @@ export default {
         ComTitle
     },
     created(){
-        this.getdata();
+        Promise.all([this.getdata()]).then(res=>{
+            this.fmtdata(res[0].data.data);
+        })
     },
     methods:{
         getdata(){
-            let _ = this;
-            api.rq("/grraph/basicdata","").then(res=>{
-                _.fmtdata(res.data);
-            })
+            return axios.post("/grraph/basicdata","");
         },
         fmtdata(data){
             let [sexdata,agedata,catedata] = [[],[],[]];
