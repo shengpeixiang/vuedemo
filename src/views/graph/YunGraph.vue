@@ -6,7 +6,9 @@
                 <el-col :span="7">
                     <com-title :title="ltt"></com-title>
                     <con-box :ch="lth">
-                        <Charts v-for="item in basicdata" :chartstyle="tps" :chartoptions="item.data" :key="item.title" />
+                        <keep-alive>
+                            <Charts :ct="tps" :cdata="basicdata[0].data" />
+                        </keep-alive>
                     </con-box>
                     <com-title :title="lmt"></com-title>
                     <con-box :ch="lmh"></con-box>
@@ -52,7 +54,10 @@ export default {
             rmt:"最近咨询",
             rbt:"心理预警处理率",
             mt:"评测情况",
-            tps:{},
+            tps:{
+                width:"30%",
+                height:"10vh"
+            },
             basicdata:[
                 {title:"性别分布",data:[]},
                 {title:"年龄群体分布",data:[]},
@@ -66,16 +71,22 @@ export default {
         ComTitle,
         Charts
     },
+    created(){
+        let _ = this;
+        _.getdata();
+    },
     methods:{
         getdata(){
+            const _ = this;
             api.rq("/grraph/basicdata","").then(res=>{
-                console.log(res);
+                _.basicdata[0].data = res.bd.sex;
+                _.basicdata[1].data = res.bd.age;
+                _.basicdata[2].data = res.bd.cate;
             })
         }
     },
     mounted(){
         let _ = this;
-        _.getdata();
     }
 }
 </script>

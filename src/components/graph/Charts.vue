@@ -1,63 +1,69 @@
 <template>
-    <div id="ChartCon" class="chart-con" :style="chartstyle"></div>
+  <div class="my-chart" :style="ct" id="myChart"></div>
 </template>
 
 <script>
-import * as echarts from "echarts/core"
-import {PieChart,MapChart} from "echarts/charts"
-import {TitleComponent,TooltipComponent,GridComponent} from "echarts/components"
-import {CanvasRenderer} from "echarts/renderers"
-import debounce from "lodash.debounce"
-
-echarts.use([PieChart,MapChart,TitleComponent,TooltipComponent,GridComponent,CanvasRenderer])
-
+import * as echarts from "echarts/core";
+import { PieChart } from "echarts/charts";
+import { CanvasRenderer } from "echarts/renderers";
+echarts.use([CanvasRenderer, PieChart]);
 export default {
-    props:{
-        chartstyle:{
-            type:Object,
-            default:{}
-        },
-        chartoptions:{
-            type:Array,
-            default:[]
-        }
+  props: {
+    ct: {
+      type: Object,
+      default: {},
     },
-    data(){
-        return {
-            myChart:null
-        }
+    cdata: {
+      type: Array,
+      default: [],
     },
-    methods:{
-        renderCharts(data){
-            let option = {
-                title: {
-                    show:false
-                },
-                tooltip: {
-                    trigger: 'item'
-                },
-                series: [
-                    {
-                        type: 'pie',
-                        radius: '80%',
-                        data:data
-                    }
-                ]
-            };
-            this.myChart = echarts.init(document.getElementById("ChartCon"));
-            this.myChart.setOption(option)
-        }
+  },
+  data() {
+    return {
+      tCHart: null,
+    };
+  },
+  methods: {
+    renderChart() {
+      let _ = this;
+      if (_.cdata.length) {
+        _.tCHart = echarts.init(document.getElementById("myChart"));
+        _.tCHart.setOption({
+          series: [
+            {
+              type: "pie",
+              radius: "90%",
+              emphasis: {
+                scale: false,
+              },
+              label: {
+                show: true,
+              },
+              data: _.cdata,
+            },
+          ],
+        });
+      }
     },
-    mounted(){
-        let _ = this;
-        _.renderCharts(_.chartoptions);
-        window.onresize = debounce(()=>{
-            this.myChart.resize();
-        },100)
-    }
-}
+  },
+  mounted() {
+    const _ = this;
+    _.$nextTick(() => {
+      _.renderChart();
+    });
+  },
+  watch: {
+    cdata() {
+      let _ = this;
+      this.$nextTick(() => {
+        if (_.cdata) {
+          _.renderChart();
+        }
+      });
+    },
+  },
+};
 </script>
 
-<style>
-
+<style scoped>
 </style>

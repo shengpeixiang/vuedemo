@@ -1,5 +1,7 @@
 <template>
-    <div>FmReport</div>
+    <div>
+        <h3>FmReport</h3>
+    </div>
 </template>
 
 <script>
@@ -8,6 +10,6 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+    
 </style>
