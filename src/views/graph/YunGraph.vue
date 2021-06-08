@@ -6,9 +6,7 @@
                 <el-col :span="7">
                     <com-title :title="ltt"></com-title>
                     <con-box :ch="lth">
-                        <keep-alive>
-                            <Charts :ct="tps" :cdata="basicdata[0].data" />
-                        </keep-alive>
+                        <Charts :ct="tps" :cdata="basicdata[0].data" />
                     </con-box>
                     <com-title :title="lmt"></com-title>
                     <con-box :ch="lmh"></con-box>

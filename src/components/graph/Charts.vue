@@ -1,13 +1,22 @@
 <template>
-  <div class="my-chart" :style="ct" id="myChart"></div>
+  <v-chart :ct="ct" :option="option" id="myChart" />
 </template>
-
 <script>
-import * as echarts from "echarts/core";
-import { PieChart } from "echarts/charts";
-import { CanvasRenderer } from "echarts/renderers";
-echarts.use([CanvasRenderer, PieChart]);
+import {use} from "echarts/core"
+import {CanvasRenderer} from "echarts/renderers"
+import { PieChart } from "echarts/charts"
+import { TooltipComponent } from "echarts/components";
+import VChart,{THENE_KEY} from 'vue-echarts'
+use([
+    CanvasRenderer,PieChart,TooltipComponent
+])
 export default {
+  components:{
+    VChart
+  },
+  provide: {
+    [THENE_KEY]: "dark"
+  },
   props: {
     ct: {
       type: Object,
@@ -19,48 +28,32 @@ export default {
     },
   },
   data() {
+    let _ = this;
     return {
-      tCHart: null,
+      option: {
+        series: [
+          {
+            type: "pie",
+            radius: "70%",
+            label: {
+              show: true,
+            },
+            data:_.cdata,
+            emphasis: {
+              scale: false,
+            }
+          }
+        ]
+      }
     };
   },
   methods: {
-    renderChart() {
-      let _ = this;
-      if (_.cdata.length) {
-        _.tCHart = echarts.init(document.getElementById("myChart"));
-        _.tCHart.setOption({
-          series: [
-            {
-              type: "pie",
-              radius: "90%",
-              emphasis: {
-                scale: false,
-              },
-              label: {
-                show: true,
-              },
-              data: _.cdata,
-            },
-          ],
-        });
-      }
-    },
   },
   mounted() {
-    const _ = this;
-    _.$nextTick(() => {
-      _.renderChart();
-    });
+    console.log("Chart Mounted")
   },
   watch: {
-    cdata() {
-      let _ = this;
-      this.$nextTick(() => {
-        if (_.cdata) {
-          _.renderChart();
-        }
-      });
-    },
+    
   },
 };
 </script>
