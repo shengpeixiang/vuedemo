@@ -58,18 +58,25 @@ export default {
                 width:"30%",
                 height:"10vh"
             },
+            tps:{width:'30%',height:'15vh'},
             basicdata:[
                 {title:"性别分布",data:[]},
                 {title:"年龄群体分布",data:[]},
                 {title:"职业群体分布",data:[]},
-            ]
+            ],
+            getasyncdata:{}
         }
     },
     components:{
         GrapHead,
         ConBox,
-        ComTitle,
+        ComTitle, 
         Charts
+    },
+    created(){
+        Promise.all([this.getdata()]).then(res=>{
+            this.fmtdata(res[0].data.data);
+        })
     },
     created(){
         let _ = this;
@@ -87,6 +94,7 @@ export default {
     },
     mounted(){
         let _ = this;
+
     }
 }
 </script>
