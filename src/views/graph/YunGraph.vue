@@ -6,7 +6,17 @@
                 <el-col :span="7">
                     <com-title :title="ltt"></com-title>
                     <con-box :ch="lth">
-                        <Charts :ct="tps" :cdata="basicdata[0].data" />
+                        <div class="flex-box">
+                            <div class="top-pie-item">
+                                <Charts :ct="tps" :cdata="basicdata[0].data" />
+                            </div>
+                            <div class="top-pie-item">
+                                <Charts :ct="tps" :cdata="basicdata[1].data" />
+                            </div>
+                            <div class="top-pie-item">
+                                <Charts :ct="tps" :cdata="basicdata[2].data" />
+                            </div>
+                        </div>
                     </con-box>
                     <com-title :title="lmt"></com-title>
                     <con-box :ch="lmh"></con-box>
@@ -52,11 +62,7 @@ export default {
             rmt:"最近咨询",
             rbt:"心理预警处理率",
             mt:"评测情况",
-            tps:{
-                width:"30%",
-                height:"10vh"
-            },
-            tps:{width:'30%',height:'15vh'},
+            tps:{width:'80px',height:'15vh',margin:'auto'},
             basicdata:[
                 {title:"性别分布",data:[]},
                 {title:"年龄群体分布",data:[]},
@@ -94,4 +100,6 @@ export default {
 <style>
     .graph-con{height: 100%;background-color: #00043d; background-image:url('~@/assets/bigbg.png');overflow: auto;min-width:1024px;}
     .content-box{width:98%;margin: auto;}
+    .flex-box{display: flex;}
+    .top-pie-item{flex-grow: 1;text-align: center;}
 </style>

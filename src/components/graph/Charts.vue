@@ -1,21 +1,18 @@
 <template>
-  <v-chart :ct="ct" ref="piec" :option="option" id="myChart" />
+  <v-chart :style="ct" ref="piec" :option="option" id="myChart" />
 </template>
 <script>
 import {use} from "echarts/core"
 import {CanvasRenderer} from "echarts/renderers"
 import { PieChart } from "echarts/charts"
 import { TooltipComponent } from "echarts/components";
-import VChart,{THENE_KEY} from 'vue-echarts'
+import VChart from 'vue-echarts'
 use([
     CanvasRenderer,PieChart,TooltipComponent
 ])
 export default {
   components:{
     VChart
-  },
-  provide: {
-    [THENE_KEY]: "dark"
   },
   props: {
     ct: {
@@ -33,7 +30,7 @@ export default {
         series: [
           {
             type: "pie",
-            radius: "70%",
+            radius: "80%",
             label: {
               show: true,
             },
