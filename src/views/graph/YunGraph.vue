@@ -30,11 +30,11 @@
     </div>
 </template>
 <script>
-import GrapHead from "./../../components/graph/GrapHead"
-import ConBox from "./../../components/graph/ConBox"
-import ComTitle from "./../../components/graph/ComTitle"
-import Charts from "./../../components/graph/Charts"
-import api from "./../../axios/api"
+import GrapHead from "@/components/graph/GrapHead"
+import ConBox from "@/components/graph/ConBox"
+import ComTitle from "@/components/graph/ComTitle"
+import Charts from "@/components/graph/Charts"
+import {apost} from "@/axios/api"
 export default {
     data(){
         return {
@@ -72,27 +72,21 @@ export default {
         Charts
     },
     created(){
-        Promise.all([this.getdata()]).then(res=>{
-            this.fmtdata(res[0].data.data);
-        })
-    },
-    created(){
         let _ = this;
         _.getdata();
     },
     methods:{
         getdata(){
             const _ = this;
-            api.rq("/grraph/basicdata","").then(res=>{
-                _.basicdata[0].data = res.bd.sex;
-                _.basicdata[1].data = res.bd.age;
-                _.basicdata[2].data = res.bd.cate;
+            apost("/grraph/basicdata",{id:89}).then(res=>{
+                _.basicdata[0].data = res.data.bd.sex;
+                _.basicdata[1].data = res.data.bd.age;
+                _.basicdata[2].data = res.data.bd.cate;
             })
         }
     },
     mounted(){
         let _ = this;
-
     }
 }
 </script>

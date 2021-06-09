@@ -2,8 +2,9 @@ const Mock = require("mockjs");
 function rn(){
     return Math.ceil(Math.random()*100)
 }
-const produceNewsData = function(){
+const produceNewsData = function(id){
     let basicData = {
+        id:id,
         sex:[{value:rn(),name:"男"},{value:rn(),name:"女"}],
         age:[
             {value:rn(),name:"00后"},
@@ -26,5 +27,10 @@ const produceNewsData = function(){
         bd:basicData
     }
 }
-
+const menulist = function(){
+    return [
+        {id:1,title:"吃"}
+    ]
+}
 Mock.mock("/grraph/basicdata","post",produceNewsData);
+Mock.mock("/index/index/homepage","post",menulist);

@@ -1,5 +1,5 @@
 <template>
-  <v-chart :ct="ct" :option="option" id="myChart" />
+  <v-chart :ct="ct" ref="piec" :option="option" id="myChart" />
 </template>
 <script>
 import {use} from "echarts/core"
@@ -28,7 +28,6 @@ export default {
     },
   },
   data() {
-    let _ = this;
     return {
       option: {
         series: [
@@ -38,7 +37,7 @@ export default {
             label: {
               show: true,
             },
-            data:_.cdata,
+            data:[],
             emphasis: {
               scale: false,
             }
@@ -48,12 +47,16 @@ export default {
     };
   },
   methods: {
+
   },
   mounted() {
-    console.log("Chart Mounted")
+    
   },
   watch: {
-    
+    cdata(val){
+      this.option.series[0].data = val;
+      console.log(this.option);
+    }
   },
 };
 </script>
