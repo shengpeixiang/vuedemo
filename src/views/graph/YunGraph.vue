@@ -6,20 +6,17 @@
                 <el-col :span="7">
                     <com-title :title="ltt"></com-title>
                     <con-box :ch="lth">
-                        <div class="flex-box">
-                            <div class="top-pie-item">
-                                <Charts :ct="tps" :cdata="basicdata[0].data" />
-                            </div>
-                            <div class="top-pie-item">
-                                <Charts :ct="tps" :cdata="basicdata[1].data" />
-                            </div>
-                            <div class="top-pie-item">
-                                <Charts :ct="tps" :cdata="basicdata[2].data" />
+                        <div class="flex-box top-pie-con">
+                            <div :class="['top-pie-item','top-pie-item'+index]" v-for="(item,index) in basicdata" :key="item.title">
+                                <div class="pie-title">{{item.title}}</div>
+                                <Charts :ct="tps" :cdata="item.data" />
                             </div>
                         </div>
                     </con-box>
                     <com-title :title="lmt"></com-title>
-                    <con-box :ch="lmh"></con-box>
+                    <con-box :ch="lmh">
+                        
+                    </con-box>
                     <com-title :title="lbt"></com-title>
                     <con-box :ch="lbh"></con-box>
                 </el-col>
@@ -48,13 +45,13 @@ import {apost} from "@/axios/api"
 export default {
     data(){
         return {
-            lth:{height:'18vh',margin:"0 0 0.8vh"},
-            lmh:{height:'25vh',margin:"0 0 0.8vh"},
-            lbh:{height:'21vh'},
-            rth:{height:'16vh',margin:"0 0 0.8vh"},
-            rmh:{height:'26vh',margin:"0 0 0.8vh"},
-            rbh:{height:'22vh'},
-            mh:{height:'72.8vh'},
+            lth:{height:'24vh',margin:"0 0 0.8vh"},
+            lmh:{height:'28vh',margin:"0 0 0.8vh"},
+            lbh:{height:'24vh'},
+            rth:{height:'24vh',margin:"0 0 0.8vh"},
+            rmh:{height:'28vh',margin:"0 0 0.8vh"},
+            rbh:{height:'24vh'},
+            mh:{height:'84.8vh'},
             ltt:"基础信息",
             lmt:"精神心理疾病",
             lbt:"重点人群服务",
@@ -62,7 +59,7 @@ export default {
             rmt:"最近咨询",
             rbt:"心理预警处理率",
             mt:"评测情况",
-            tps:{width:'80px',height:'15vh',margin:'auto'},
+            tps:{width:'80px',height:'16vh',margin:'auto'},
             basicdata:[
                 {title:"性别分布",data:[]},
                 {title:"年龄群体分布",data:[]},
@@ -97,9 +94,16 @@ export default {
 }
 </script>
 
-<style>
-    .graph-con{height: 100%;background-color: #00043d; background-image:url('~@/assets/bigbg.png');overflow: auto;min-width:1024px;}
+<style lang="less" scoped>
+    .graph-con{height:calc(100% -10px);background-color: #00043d;
+        background-image:url('~@/assets/bigbg.png');overflow: auto;
+        min-width:1024px;padding-bottom: 10px;}
     .content-box{width:98%;margin: auto;}
     .flex-box{display: flex;}
-    .top-pie-item{flex-grow: 1;text-align: center;}
+    .top-pie-con{padding:8px 8px 0;}
+    .top-pie-item{flex-grow: 1;text-align: center;
+        background-image:linear-gradient(rgba(46, 69, 241,.22),rgba(0,4,61,.22));
+        border-radius:4px 4px 0 0;}
+    .top-pie-item1{margin: 0 5px;}
+    .pie-title{color:#D6E1EC;font-size: 12px;margin:8px 0 5px;}
 </style>

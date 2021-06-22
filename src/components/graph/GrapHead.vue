@@ -17,7 +17,7 @@ export default {
         getctime(){
             let t = new Date();
             let [cy,cm,cd,ch,cmin,cs] = [t.getFullYear(),t.getMonth()+1,t.getDate(),t.getHours(),t.getMinutes(),t.getSeconds()];
-            let tstr = cy+"年"+(cm<=9?"0"+cm:cm)+"月"+(cd<=9?"0"+cd:cd)+"日-"+(ch<=9?"0"+ch:ch)+":"+(cmin<=9?"0"+cmin:cmin)+":"+(cs<=9?"0"+cs:cs);
+            let tstr = cy+"年"+(cm<=9?"0"+cm:cm)+"月"+(cd<=9?"0"+cd:cd)+"日 "+(ch<=9?"0"+ch:ch)+":"+(cmin<=9?"0"+cmin:cmin)+":"+(cs<=9?"0"+cs:cs);
             this.ctime = tstr;
         }
     },

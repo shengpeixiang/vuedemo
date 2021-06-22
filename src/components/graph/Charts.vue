@@ -5,10 +5,10 @@
 import {use} from "echarts/core"
 import {CanvasRenderer} from "echarts/renderers"
 import { PieChart } from "echarts/charts"
-import { TooltipComponent } from "echarts/components";
+import { TooltipComponent,LegendComponent } from "echarts/components";
 import VChart from 'vue-echarts'
 use([
-    CanvasRenderer,PieChart,TooltipComponent
+    CanvasRenderer,PieChart,TooltipComponent,LegendComponent
 ])
 export default {
   components:{
@@ -23,16 +23,37 @@ export default {
       type: Array,
       default: [],
     },
+    colors:{
+      type:Array,
+      dafault:[]
+    }
   },
   data() {
     return {
       option: {
+        legend:{
+          show:true,
+          itemWidth:5,
+          itemHeight:5,
+          itemGap:3,
+          bottom:0,
+          textStyle:{
+            color:"#ffffff",
+            fontSize:10,
+            lineHeight:10,
+            width:23,
+            height:10,
+            overflow:'truncate'
+          }
+        },
         series: [
           {
             type: "pie",
-            radius: "80%",
+            radius: "74%",
+            center:['50%',30],
             label: {
-              show: true,
+              position: 'inside',
+              formatter:(p)=>parseInt(p.percent)
             },
             data:[],
             emphasis: {
@@ -52,7 +73,6 @@ export default {
   watch: {
     cdata(val){
       this.option.series[0].data = val;
-      console.log(this.option);
     }
   },
 };
