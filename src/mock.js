@@ -46,5 +46,9 @@ const menulist = function(){
         {id:1,title:"吃"}
     ]
 }
+const comsuccess = function(data){
+    return data;
+}
 Mock.mock("/grraph/basicdata","post",produceNewsData);
 Mock.mock("/index/index/homepage","post",menulist);
+Mock.mock("/index/index/success","post",comsuccess);

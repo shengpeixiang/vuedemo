@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import {check,getcookie} from './../../utils/login'
+import {check,getcookie} from '@/utils/login'
 export default {
     
     data(){

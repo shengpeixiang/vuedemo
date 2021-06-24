@@ -1,104 +1,104 @@
 <template>
     <div>
-        <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="用户名" prop="username">
-                <el-input v-model="ruleForm.username"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" prop="pass">
-                <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="确认密码" prop="checkPass">
-                <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
-            </el-form-item>
-            
-            <el-form-item>
-                <el-button type="primary" @click="submitForm('ruleForm')">注册提交</el-button>
-                <el-button @click="backlogin">返回登陆</el-button>
-            </el-form-item>
+        <el-form ref="form" :model="form" label-width="80px">
+          <el-form-item label="用户名">
+            <el-input v-model="form.userName"></el-input>
+          </el-form-item>
+          <el-form-item label="密码">
+            <el-input type="password" :suffix-icon="pw_icon" v-model="form.userPassword" placeholder="有8位以上数字及字母组合"></el-input>
+          </el-form-item>
+          <el-form-item label="邮箱">
+            <el-input v-model="form.userEmail">
+              <template slot="append">.com</template>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="电话">
+            <el-input v-model="form.userPhone"></el-input>
+          </el-form-item>
+          <el-form-item label="验证码" class="account-input">
+            <el-input v-model="form.userAccount"></el-input>
+            <img class="account-img" :src="accountsrc" @click="refresh">
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="onSubmit">立即注册</el-button>
+            <el-button>返回登陆</el-button>
+          </el-form-item>
         </el-form>
     </div>
 </template>
-
 <script>
+import {apost,aget} from "@/axios/api"
+import {check_pass,check_mobile,deep_copy} from "@/utils/utils"
+import md5 from "js-md5"
 export default {
-     data() {
-      var checkName = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('用户名不能为空'));
-        }else{
-            callback()
-        }
-      };
-      var validatePass = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入密码'));
-        } else {
-          if (this.ruleForm.checkPass !== '') {
-            this.$refs.ruleForm.validateField('checkPass');
-          }
-          callback();
-        }
-      };
-      var validatePass2 = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请再次输入密码'));
-        } else if (value !== this.ruleForm.pass) {
-          callback(new Error('两次输入密码不一致!'));
-        } else {
-          callback();
-        }
-      };
+    data() {
       return {
-        ruleForm: {
-          username: '',
-          checkPass: '',
-          age: ''
+        form: {
+          userAccount: "",
+          userAvatarId: "",
+          userEmail: "",
+          userName: "",
+          userPassword: "",
+          userPhone: ""
         },
-        rules: {
-          pass: [
-            { validator: validatePass, trigger: 'blur' }
-          ],
-          checkPass: [
-            { validator: validatePass2, trigger: 'blur' }
-          ],
-          age: [
-            { validator: checkName, trigger: 'blur' }
-          ]
-        },
-        timeout:null
-      };
-    },
-    methods: {
-      submitForm(formName) {
-          var _ = this;
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            _.$message({
-                message:"注册成功",
-                type:"success"
-            })
-            _.timeout = setTimeout(() => {
-                _.$router.push({path:"/user"})
-            }, 3000);
-          } else {
-            _.$message({
-                message:"信息不全",
-                type:"warning"
-            })
-          }
-        });
-      },
-      backlogin() {
-        this.$router.push({path:"/user"})
+        pw_icon:"",
+        accountsrc:""
       }
     },
-    beforeDestroy(){
-        clearTimeout(this.timeout);
-        this.timeout = null;
+    watch:{
+      'form.userPassword'(val,oval){
+        if(check_pass(val)){
+          this.pw_icon = "el-icon-success main-color"
+        }
+      }
+    },
+    created(){
+      this.refresh();
+    },
+    methods: {
+      refresh(){
+        let _ = this;
+        aget("/validate/getValidateCodeBase64").then((res)=>{
+          if(res.code == "200"){
+            _.accountsrc = res.data.validateCode;
+          }
+        })
+      },
+      checkval(){
+        let _ = this;
+        if(!_.form.userName){
+          _.$message({type:"warning",message:"请输入用户名"});
+          return !1;
+        }else if(!check_pass(_.form.userPassword)){
+          _.$message({type:"warning",message:"请输入正确格式密码"});
+          _.form.userPassword = "";
+          return !1;
+        }if(!check_mobile(_.form.userPhone)){
+          _.$message({type:"warning",message:"请输入正确的手机号"});
+          return !1;
+        }if(!_.form.userAccount){
+          _.$message({type:"warning",message:"请输入验证码"});
+          return !1;
+        }else{
+          return !0;
+        }
+      },
+      onSubmit() {
+        let _ = this;
+        if(_.checkval()){
+          let pobj = deep_copy(_.form);
+          pobj.userPassword = md5(pobj.userPassword);
+          apost("/user/register",pobj).then((res)=>{
+            console.log(res);
+          })
+        }
+      }
     }
   }
 </script>
 
 <style>
-
+  .main-color{color: #409EFF;}
+  .account-input .el-form-item__content{display: flex;}
+  .account-img{max-height: 40px;margin-left:20px;}
 </style>
