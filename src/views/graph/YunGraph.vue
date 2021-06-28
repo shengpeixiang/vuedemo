@@ -76,7 +76,7 @@ export default {
     },
     created(){
         let _ = this;
-        _.getdata();
+        // _.getdata();
     },
     methods:{
         getdata(){

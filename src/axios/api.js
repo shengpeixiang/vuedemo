@@ -6,6 +6,10 @@ const instance = axios.create({
 })
 instance.interceptors.request.use(function(config){
   console.log("发送请求之前做一些事情，interceptors.request.use")
+  let token = localStorage.getItem("token");
+  if(token){
+    config.headers.Authorization = token;
+  }
   return config;
 },function(err){
   return Promise.reject(err);

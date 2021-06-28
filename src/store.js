@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import {apost} from "@/axios/api"
 
 Vue.use(Vuex);
 

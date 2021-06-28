@@ -1,4 +1,5 @@
 
+import {apost} from "@/axios/api"
 const userlist = [
     {name:"admin",pw:"admin123456"}
 ]
@@ -45,10 +46,16 @@ export function check(name,pw,callback){
         callback('404');
     }
 }
-
+export function logout(){
+    let _ = this;
+    apost("/user/logout",{}).then((res)=>{
+        localStorage.clear();
+        _.$router.replace({path:"/user"})
+    })
+}
 export function islogin(){
-    let lcookie = getcookie();
-    if(userlist[0].pw === lcookie[userlist[0].name]){
+    let token = localStorage.getItem("token");
+    if(token){
         return true;
     }else{
         return false;

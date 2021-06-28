@@ -15,9 +15,8 @@
         </el-dialog>
     </div>
 </template>
-
 <script>
-import { clearCookie } from "./../utils/login"
+import {logout} from "@/utils/login"
 export default {
     data(){
         return {
@@ -26,8 +25,7 @@ export default {
     },
     methods:{
         logOut:function(){
-            clearCookie();
-            this.$router.replace({path:"/user"})
+            logout.call(this);
         }
     }
 }
