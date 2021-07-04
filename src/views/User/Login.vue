@@ -67,7 +67,7 @@ export default {
             apost("/user/login",pobj).then((res)=>{
                 if(res.code == 200){
                     localStorage.setItem("token",res.data.token);
-                    localStorage.setItem("userName",res.data.userName);
+                    localStorage.setItem("account",res.data.userAccount);
                     _.$store.state.user = res.data;
                     _.$router.push({path:"/home/graph/yungraph"});
                 }else{

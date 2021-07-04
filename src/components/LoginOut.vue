@@ -33,6 +33,5 @@ export default {
 
 <style>
     .login-out-icon{font-size:22px;color: #fff;position:absolute;right: 20px;top: 22px;z-index: 1000;cursor: pointer;}
-    .self-dialog .el-dialog__header{padding: 0;}
     .self-dialog .el-button--primary{background-color:#195190;border-color: #195190;}
 </style>

@@ -14,7 +14,7 @@
     "echarts": "^5.1.1",
     "element-ui": "^2.15.1",
     "js-md5": "^0.7.3",
-    "lodash.debounce": "^4.0.8",
+    "lodash": "^4.0.8",
     "nprogress": "^0.2.0",
     "vue": "^2.6.10",
     "vue-echarts": "^6.0.0-rc.5",

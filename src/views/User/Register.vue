@@ -27,7 +27,8 @@
 </template>
 <script>
 import {apost} from "@/axios/api"
-import {check_pass,check_mobile,deep_copy} from "@/utils/utils"
+import {check_pass,check_mobile} from "@/utils/utils"
+import {cloneDeep} from "lodash"
 import md5 from "js-md5"
 export default {
     data() {
@@ -47,6 +48,8 @@ export default {
       'form.userPassword'(val,oval){
         if(check_pass(val)){
           this.pw_icon = "el-icon-success main-color"
+        }else{
+          this.pw_icon = ""
         }
       }
     },
@@ -73,7 +76,7 @@ export default {
       onSubmit() {
         let _ = this;
         if(_.checkval()){
-          let pobj = deep_copy(_.form);
+          let pobj = cloneDeep(_.form);
           pobj.userPassword = md5(pobj.userPassword);
           apost("/user/register",pobj).then((res)=>{
             if(res.code==200){
@@ -97,4 +100,28 @@ export default {
   .main-color{color: #409EFF;}
   .account-input .el-form-item__content{display: flex;}
   .account-img{max-height: 40px;margin-left:20px;}
+
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
 </style>

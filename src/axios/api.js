@@ -1,8 +1,9 @@
 import axios from 'axios'
-
+import router from "@/router"
+axios.defaults.withCredentials = true;
 const instance = axios.create({
-  baseURL:"http://39.103.206.77:8888/api",
-  timeout:5000
+  baseURL:"/api",
+  timeout:10000
 })
 instance.interceptors.request.use(function(config){
   console.log("发送请求之前做一些事情，interceptors.request.use")
@@ -16,6 +17,10 @@ instance.interceptors.request.use(function(config){
 })
 instance.interceptors.response.use(function(response){
   console.log("响应之前做一些事情，interceptors.response.use");
+  if(response.data.code === 401){
+    localStorage.clear();
+    router.replace({path:"/user"})
+  }
   return response.data;
 },function(err){
   return Promise.reject(err);

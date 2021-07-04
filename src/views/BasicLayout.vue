@@ -44,6 +44,6 @@ export default {
     .out-nav{position: fixed;left: 0;top: 0;bottom: 0;width: 107px;padding-top: 21px;
         padding-left: 11px;overflow: hidden;}
     .left-con-small{width:67px;}
-    .inner-con{margin-left: 118px;padding-right: 20px;padding-bottom: 20px;}
+    .inner-con{margin-left: 118px;padding-right: 20px;padding-bottom: 20px;font-size: 12px !important;}
     .inner-con-small{margin-left:78px;}
 </style>
